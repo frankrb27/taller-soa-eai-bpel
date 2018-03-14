@@ -32,7 +32,8 @@
          xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns6="http://www.example.org/salida"
          xmlns:ns7="http://xmlns.oracle.com/BRAlertaCombustible/BRAlertaCombustible_DecisionService_1"
          xmlns:ns8="http://xmlns.oracle.com/bpel"
-         xmlns:ns9="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1">
+         xmlns:ns9="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1"
+         xmlns:ns10="http://maintenance-planner-mopp.ws.com.co">
   <import namespace="http://www.example.org/salida" location="../Schemas/Eventos_business_rules.xsd"
           importType="http://www.w3.org/2001/XMLSchema"/>
   <import namespace="http://www.example.org/salida" location="../Schemas/salida.xsd"
@@ -58,6 +59,8 @@
     <partnerLink name="CancelFlight" partnerLinkType="ns1:CancelFlight" partnerRole="CancelFlightEndpoint"/>
     <partnerLink name="BRCombustible.BRCombustible_DecisionService_1" partnerRole="IDecisionService_Role"
                  partnerLinkType="ns9:IDecisionService_PLT"/>
+    <partnerLink name="MaintenancePlannerMOPP" partnerLinkType="ns10:MaintenancePlannerMOPP"
+                 partnerRole="MaintenancePlannerMoppEndpoint"/>
   </partnerLinks>
 
   <!-- 
@@ -95,6 +98,8 @@
     <variable name="InvokeAlertaCombustible_create_OutputVariable" messageType="ns3:alertOnAirResponse"/>
     <variable name="InvokeMPNoEvents_sendMaintenance_InputVariable" messageType="ns4:maintenancePlannerRequest"/>
     <variable name="InvokeMPNoEvents_sendMaintenance_OutputVariable" messageType="ns4:maintenancePlannerResponse"/>
+    <variable name="InvokeMOPP_sendMopp_InputVariable" messageType="ns10:moppRequest"/>
+    <variable name="InvokeMOPP_sendMopp_OutputVariable" messageType="ns10:moppResponse"/>
   </variables>
 
   <!-- 
@@ -229,6 +234,11 @@
                                 <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
                                 <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/arrivalAirport</to>
                               </copy>
+                              <extensionAssignOperation>
+                                <bpelx:remove>
+                                  <bpelx:target>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/startDate</bpelx:target>
+                                </bpelx:remove>
+                              </extensionAssignOperation>
                               <copy>
                                 <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-ingate</from>
                                 <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/arrivalGate</to>
@@ -240,10 +250,6 @@
                               <copy>
                                 <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:gate-code</from>
                                 <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/departureGate</to>
-                              </copy>
-                              <copy>
-                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:date</from>
-                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/startDate</to>
                               </copy>
                               <copy>
                                 <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-outgate-time</from>
@@ -260,7 +266,7 @@
                             </assign>
                             <invoke name="InvokeMaintenance" partnerLink="MaintenancePlanner"
                                     portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
-                                    inputVariable="InvokeMaintenance_sendMaintenance_InputVariable"
+                                    inputVariable="InvokeMaintenance_sendMaintenance_InputVariable_1"
                                     outputVariable="InvokeMaintenance_sendMaintenance_OutputVariable_1"
                                     bpelx:invokeAsDetail="no"/>
                           </sequence>
@@ -277,13 +283,14 @@
                                 <to>$InvokeMPEI_sendMaintenance_InputVariable.in/aircrat-tail-number</to>
                               </copy>
                               <copy>
-                                <from>xp20:current-date()</from>
-                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/startDate</to>
-                              </copy>
-                              <copy>
                                 <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
                                 <to>$InvokeMPEI_sendMaintenance_InputVariable.in/arrivalAirport</to>
                               </copy>
+                              <extensionAssignOperation>
+                                <bpelx:remove>
+                                  <bpelx:target>$InvokeMPEI_sendMaintenance_InputVariable.in/startDate</bpelx:target>
+                                </bpelx:remove>
+                              </extensionAssignOperation>
                               <copy>
                                 <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
                                 <to>$InvokeMPEI_sendMaintenance_InputVariable.in/departureAirport</to>
@@ -362,6 +369,28 @@
                                     portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
                                     inputVariable="InvokeMPAI_sendMaintenance_InputVariable"
                                     outputVariable="InvokeMPAI_sendMaintenance_OutputVariable"/>
+                            <assign name="MaintenanceMOPP">
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:date</from>
+                                <to>$InvokeMOPP_sendMopp_InputVariable.in/date</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:tail-number</from>
+                                <to>$InvokeMOPP_sendMopp_InputVariable.in/aircrat-tail-number</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:gate-code</from>
+                                <to>$InvokeMOPP_sendMopp_InputVariable.in/gate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
+                                <to>$InvokeMOPP_sendMopp_InputVariable.in/airport</to>
+                              </copy>
+                            </assign>
+                            <invoke name="InvokeMOPP" bpelx:invokeAsDetail="no" partnerLink="MaintenancePlannerMOPP"
+                                    portType="ns10:MaintenancePlannerMoppEndpoint" operation="sendMopp"
+                                    inputVariable="InvokeMOPP_sendMopp_InputVariable"
+                                    outputVariable="InvokeMOPP_sendMopp_OutputVariable"/>
                           </sequence>
                         </if>
                       </sequence>

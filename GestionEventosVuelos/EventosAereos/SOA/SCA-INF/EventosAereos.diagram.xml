@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
     <dgm:gService name="bpeleventosaerolineasla_client_ep">
-        <dgm:body borderWidth="2" arcRad="20" X="21" Y="226" width="137" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="255" width="137" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="11" Y="219" width="156" height="98">
+        <dgm:shadow arcRad="20" X="11" Y="248" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:outputPort name="bpeleventosaerolineasla_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA#wsdl.interface(BPELEventosAerolineasLA)"/>
@@ -15,11 +15,11 @@
         </dgm:operations>
     </dgm:gService>
     <dgm:gReference name="AlertOnAir">
-        <dgm:body borderWidth="2" arcRad="20" X="653" Y="144" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="692" Y="144" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="643" Y="137" width="156" height="98">
+        <dgm:shadow arcRad="20" X="682" Y="137" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="AlertOnAir" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://alert-on-air.ws.com.co#wsdl.interface(AlertOnAirEndpoint)"/>
@@ -29,11 +29,11 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gReference name="OnAirShopping">
-        <dgm:body borderWidth="2" arcRad="20" X="653" Y="26" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="692" Y="26" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="643" Y="19" width="156" height="98">
+        <dgm:shadow arcRad="20" X="682" Y="19" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="OnAirShopping" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://on-air-shopping.ws.com.co#wsdl.interface(OnAirShoppingEndpoint)"/>
@@ -43,11 +43,11 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gReference name="MaintenancePlanner">
-        <dgm:body borderWidth="2" arcRad="20" X="653" Y="262" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="692" Y="262" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="643" Y="255" width="156" height="98">
+        <dgm:shadow arcRad="20" X="682" Y="255" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="MaintenancePlanner" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://maintenance-planner.ws.com.co#wsdl.interface(MaintenancePlannerEndpoint)"/>
@@ -57,11 +57,11 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gReference name="CancelFlight">
-        <dgm:body borderWidth="2" arcRad="20" X="653" Y="380" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="692" Y="380" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="643" Y="373" width="156" height="98">
+        <dgm:shadow arcRad="20" X="682" Y="373" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="CancelFlight" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://cancel-flight.ws.com.co#wsdl.interface(CancelFlightEndpoint)"/>
@@ -70,13 +70,27 @@
             <dgm:item>cancelFlight</dgm:item>
         </dgm:operations>
     </dgm:gReference>
+    <dgm:gReference name="MaintenancePlannerMOPP">
+        <dgm:body borderWidth="2" arcRad="20" X="692" Y="527" width="136" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="682" Y="520" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="MaintenancePlannerMOPP" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://maintenance-planner-mopp.ws.com.co#wsdl.interface(MaintenancePlannerMoppEndpoint)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>sendMopp</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
     <dgm:gComponent name="BPELEventosAerolineasLA">
-        <dgm:body borderWidth="2" arcRad="20" X="226" Y="211" width="130" height="161">
+        <dgm:body borderWidth="2" arcRad="20" X="246" Y="240" width="130" height="186">
             <dgm:borderColor r="69" g="113" b="140"/>
             <dgm:lightBgColor r="166" g="208" b="230"/>
             <dgm:darkBgColor r="99" g="162" b="201"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="216" Y="204" width="150" height="177">
+        <dgm:shadow arcRad="20" X="236" Y="233" width="150" height="202">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="bpeleventosaerolineasla_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA#wsdl.interface(BPELEventosAerolineasLA)"/>
@@ -85,57 +99,65 @@
         <dgm:outputPort name="MaintenancePlanner" X="120" Y="65" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://maintenance-planner.ws.com.co#wsdl.interface(MaintenancePlannerEndpoint)"/>
         <dgm:outputPort name="CancelFlight" X="120" Y="90" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://cancel-flight.ws.com.co#wsdl.interface(CancelFlightEndpoint)"/>
         <dgm:outputPort name="BRCombustible.BRCombustible_DecisionService_1" X="120" Y="115" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1#wsdl.interface(IDecisionService)"/>
+        <dgm:outputPort name="MaintenancePlannerMOPP" X="120" Y="140" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://maintenance-planner-mopp.ws.com.co#wsdl.interface(MaintenancePlannerMoppEndpoint)"/>
         <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
     </dgm:gComponent>
     <dgm:gComponent name="BRCombustible">
-        <dgm:body borderWidth="2" arcRad="20" X="454" Y="450" width="130" height="61">
+        <dgm:body borderWidth="2" arcRad="20" X="474" Y="450" width="130" height="61">
             <dgm:borderColor r="178" g="138" b="53"/>
             <dgm:lightBgColor r="255" g="226" b="142"/>
             <dgm:darkBgColor r="255" g="198" b="77"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="444" Y="443" width="150" height="77">
+        <dgm:shadow arcRad="20" X="464" Y="443" width="150" height="77">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="BRCombustible_DecisionService_1" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1#wsdl.interface(IDecisionService)"/>
         <dgm:nodeIcon URI="/oracle/tip/tools/ide/rules/plugins/resources/images/soa/decision_20x20.png" X="10" Y="4" width="20" height="20"/>
     </dgm:gComponent>
     <dgm:gWireLink source="bpeleventosaerolineasla_client_ep" target="BPELEventosAerolineasLA/bpeleventosaerolineasla_client" width="2">
-        <dgm:gSegment X1="168" Y1="236" X2="216" Y2="236"/>
+        <dgm:gSegment X1="168" Y1="265" X2="236" Y2="265"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="BPELEventosAerolineasLA/OnAirShopping" target="OnAirShopping" width="2">
-        <dgm:gSegment X1="366" Y1="236" X2="390" Y2="236"/>
-        <dgm:gSegment X1="390" Y1="236" X2="390" Y2="36"/>
-        <dgm:gSegment X1="390" Y1="36" X2="643" Y2="36"/>
+        <dgm:gSegment X1="386" Y1="265" X2="410" Y2="265"/>
+        <dgm:gSegment X1="410" Y1="265" X2="410" Y2="36"/>
+        <dgm:gSegment X1="410" Y1="36" X2="682" Y2="36"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="BPELEventosAerolineasLA/AlertOnAir" target="AlertOnAir" width="2">
-        <dgm:gSegment X1="366" Y1="261" X2="405" Y2="261"/>
-        <dgm:gSegment X1="405" Y1="261" X2="405" Y2="154"/>
-        <dgm:gSegment X1="405" Y1="154" X2="643" Y2="154"/>
+        <dgm:gSegment X1="386" Y1="290" X2="425" Y2="290"/>
+        <dgm:gSegment X1="425" Y1="290" X2="425" Y2="154"/>
+        <dgm:gSegment X1="425" Y1="154" X2="682" Y2="154"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="BPELEventosAerolineasLA/MaintenancePlanner" target="MaintenancePlanner" width="2">
-        <dgm:gSegment X1="366" Y1="286" X2="420" Y2="286"/>
-        <dgm:gSegment X1="420" Y1="286" X2="420" Y2="272"/>
-        <dgm:gSegment X1="420" Y1="272" X2="643" Y2="272"/>
+        <dgm:gSegment X1="386" Y1="315" X2="440" Y2="315"/>
+        <dgm:gSegment X1="440" Y1="315" X2="440" Y2="272"/>
+        <dgm:gSegment X1="440" Y1="272" X2="682" Y2="272"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="BPELEventosAerolineasLA/CancelFlight" target="CancelFlight" width="2">
-        <dgm:gSegment X1="366" Y1="311" X2="405" Y2="311"/>
-        <dgm:gSegment X1="405" Y1="311" X2="405" Y2="390"/>
-        <dgm:gSegment X1="405" Y1="390" X2="643" Y2="390"/>
+        <dgm:gSegment X1="386" Y1="340" X2="440" Y2="340"/>
+        <dgm:gSegment X1="440" Y1="340" X2="440" Y2="390"/>
+        <dgm:gSegment X1="440" Y1="390" X2="682" Y2="390"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="BPELEventosAerolineasLA/BRCombustible.BRCombustible_DecisionService_1" target="BRCombustible/BRCombustible_DecisionService_1" width="2">
-        <dgm:gSegment X1="366" Y1="336" X2="390" Y2="336"/>
-        <dgm:gSegment X1="390" Y1="336" X2="390" Y2="475"/>
-        <dgm:gSegment X1="390" Y1="475" X2="444" Y2="475"/>
+        <dgm:gSegment X1="386" Y1="365" X2="425" Y2="365"/>
+        <dgm:gSegment X1="425" Y1="365" X2="425" Y2="475"/>
+        <dgm:gSegment X1="425" Y1="475" X2="464" Y2="475"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="BPELEventosAerolineasLA/MaintenancePlannerMOPP" target="MaintenancePlannerMOPP" width="2">
+        <dgm:gSegment X1="386" Y1="390" X2="410" Y2="390"/>
+        <dgm:gSegment X1="410" Y1="390" X2="410" Y2="537"/>
+        <dgm:gSegment X1="410" Y1="537" X2="682" Y2="537"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>

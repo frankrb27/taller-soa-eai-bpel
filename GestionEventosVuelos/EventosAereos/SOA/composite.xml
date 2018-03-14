@@ -24,6 +24,10 @@
   <import namespace="http://cancel-flight.ws.com.co" location="WSDLs/cancel-flightWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1"
           location="WSDLs/BRCombustible_DecisionService_1.wsdl" importType="wsdl"/>
+  <import namespace="http://maintenance-planner-mopp.ws.com.co" location="WSDLs/maintenance-planner-mopp.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://maintenance-planner-mopp.ws.com.co" location="WSDLs/maintenance-planner-moppWrapper.wsdl"
+          importType="wsdl"/>
   <service name="bpeleventosaerolineasla_client_ep" ui:wsdlLocation="WSDLs/BPELEventosAerolineasLA.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA#wsdl.interface(BPELEventosAerolineasLA)"/>
     <binding.ws port="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA#wsdl.endpoint(bpeleventosaerolineasla_client_ep/BPELEventosAerolineasLA_pt)"/>
@@ -51,6 +55,9 @@
       <reference name="BRCombustible.BRCombustible_DecisionService_1"
                  ui:wsdlLocation="WSDLs/BRCombustible_DecisionService_1.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1#wsdl.interface(IDecisionService)"/>
+      </reference>
+      <reference name="MaintenancePlannerMOPP" ui:wsdlLocation="WSDLs/maintenance-planner-moppWrapper.wsdl">
+        <interface.wsdl interface="http://maintenance-planner-mopp.ws.com.co#wsdl.interface(MaintenancePlannerMoppEndpoint)"/>
       </reference>
     </componentType>
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">async.persist</property>
@@ -91,6 +98,13 @@
       <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="MaintenancePlannerMOPP" ui:wsdlLocation="WSDLs/maintenance-planner-mopp.wsdl">
+    <interface.wsdl interface="http://maintenance-planner-mopp.ws.com.co#wsdl.interface(MaintenancePlannerMoppEndpoint)"/>
+    <binding.ws port="http://maintenance-planner-mopp.ws.com.co#wsdl.endpoint(MaintenancePlannerMoppEndpointService/MaintenancePlannerMoppEndpoint)"
+                location="WSDLs/maintenance-planner-mopp.wsdl" soapVersion="1.1">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
+  </reference>
   <wire>
     <source.uri>bpeleventosaerolineasla_client_ep</source.uri>
     <target.uri>BPELEventosAerolineasLA/bpeleventosaerolineasla_client</target.uri>
@@ -114,5 +128,9 @@
   <wire>
     <source.uri>BPELEventosAerolineasLA/BRCombustible.BRCombustible_DecisionService_1</source.uri>
     <target.uri>BRCombustible/BRCombustible_DecisionService_1</target.uri>
+  </wire>
+  <wire>
+    <source.uri>BPELEventosAerolineasLA/MaintenancePlannerMOPP</source.uri>
+    <target.uri>MaintenancePlannerMOPP</target.uri>
   </wire>
 </composite>
