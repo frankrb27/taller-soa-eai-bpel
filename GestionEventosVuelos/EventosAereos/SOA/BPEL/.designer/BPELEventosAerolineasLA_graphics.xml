@@ -4,15 +4,15 @@
    <annotationfile/>
    <iconize/>
    <partnerlink_locations>
-      <partnerlink name="bpeleventosaerolineasla_client" x="0" y="90" side="left"/>
-      <partnerlink name="AlertOnAir" x="0" y="1366" side="left"/>
-      <partnerlink name="CancelFlight" x="0" y="18" side="left"/>
-      <partnerlink name="MaintenancePlannerMOPP" x="0" y="1558" side="left"/>
-      <partnerlink name="OnAirShopping" x="4003" y="18" side="right"/>
-      <partnerlink name="MaintenancePlanner" x="4003" y="1323" side="right"/>
-      <partnerlink name="BRCombustible.BRCombustible_DecisionService_1" x="4003" y="75" side="right"/>
+      <partnerlink name="bpeleventosaerolineasla_client" x="0" y="189" side="left"/>
+      <partnerlink name="AlertOnAir" x="0" y="18" side="left"/>
+      <partnerlink name="CancelFlight" x="0" y="75" side="left"/>
+      <partnerlink name="MaintenancePlannerMOPP" x="0" y="132" side="left"/>
+      <partnerlink name="OnAirShopping" x="1174" y="18" side="right"/>
+      <partnerlink name="MaintenancePlanner" x="1174" y="75" side="right"/>
+      <partnerlink name="BRCombustible.BRCombustible_DecisionService_1" x="1174" y="138" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="896,1180,783,282" show_swimlanes="true">
+   <graph_layout viewport="288,372,1104,459" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence" type="sequence"/>
@@ -20,30 +20,30 @@
       <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/if/scope" type="rule" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/if/scope/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow" type="flow"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow" type="flow"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[1]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[1]" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[1]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[2]" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[2]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[3]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[2]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[2]/if/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[3]" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[3]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[4]" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[4]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/else/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[4]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/sequence/flow/sequence[4]/if/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[1]/if/else/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow" type="flow"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[1]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[1]" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[1]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[2]" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[2]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[3]" type="sequence"/>
-      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[3]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[4]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[2]" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[2]/if/sequence/flow/sequence[2]/if/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[3]" type="sequence"/>
+      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[3]/if/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[4]" type="sequence"/>
       <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/sequence/flow/sequence[4]/if/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/if/sequence/if/else/sequence" type="sequence"/>
+      <layout_item collapsed="true" xpath="/process/sequence/if/sequence/if/else/sequence" type="sequence"/>
    </graph_layout>
    <bookmarks/>
 </graphics>

@@ -168,10 +168,13 @@
             <![CDATA[NoCompleted]]>
           </documentation>
           <condition>$BREventos/ns6:Status != 'COMPLETED'</condition>
-          <sequence>
+          <sequence name="ValidarEventos">
             <if name="IfCombustible">
+              <documentation>
+                <![CDATA[InformacionCombustible]]>
+              </documentation>
               <condition>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate) &gt;0 or count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate) &gt; 0</condition>
-              <scope name="combustible">
+              <scope name="IssueCombustible">
                 <bpelx:annotation>
                   <bpelx:pattern patternName="bpelx:decide"></bpelx:pattern>
                 </bpelx:annotation>
@@ -213,14 +216,14 @@
               </else>
             </if>
             <flow name="Flow1">
-              <sequence name="Sequence4">
+              <sequence name="Ingate_OutGate">
                 <if name="IfMaintenancePlanner">
                   <documentation>
                     <![CDATA[DOMAINEVENT]]>
                   </documentation>
-                  <condition>$BREventos/ns6:ActualIngate = 'true' or $BREventos/ns6:ActualOutgate = 'true' or $BREventos/ns6:EstimatedIngate = 'true' or $BREventos/ns6:EstimatedOutgate = 'true'</condition><sequence name="Sequence6">
+                  <condition>$BREventos/ns6:ActualIngate = 'true' or $BREventos/ns6:ActualOutgate = 'true' or $BREventos/ns6:EstimatedIngate = 'true' or $BREventos/ns6:EstimatedOutgate = 'true'</condition><sequence name="WithEvents">
                     <flow name="Flow2">
-                      <sequence name="Sequence10">
+                      <sequence name="EstimatedOutgate">
                         <if name="IfEstimatedOutgate">
                           <condition>$BREventos/ns6:EstimatedOutgate = 'true'</condition>
                           <sequence>
@@ -272,7 +275,7 @@
                           </sequence>
                         </if>
                       </sequence>
-                      <sequence name="Sequence9">
+                      <sequence name="EstimatedIngate">
                         <if name="IfEstimatedIngate">
                           <condition>$BREventos/ns6:EstimatedIngate = 'true'</condition>
                           <sequence>
@@ -323,7 +326,7 @@
                           </sequence>
                         </if>
                       </sequence>
-                      <sequence name="Sequence">
+                      <sequence name="ActualIngate">
                         <if name="IfActualIngate">
                           <condition>$BREventos/ns6:ActualIngate = 'true'</condition>
                           <sequence>
@@ -394,7 +397,7 @@
                           </sequence>
                         </if>
                       </sequence>
-                      <sequence name="Sequence8">
+                      <sequence name="ActualOutGate">
                         <if name="IfActualOutGate">
                           <condition>$BREventos/ns6:ActualOutgate = 'true'</condition>
                           <sequence>
@@ -448,7 +451,7 @@
                     <documentation>
                       <![CDATA[NO_DOMAINEVENT]]>
                     </documentation>
-                    <sequence>
+                    <sequence name="NoEvents">
                       <assign name="MaintenanceSinEventos">
                         <copy>
                           <from>$inputVariable.payload/ns5:tail-number</from>
@@ -495,12 +498,15 @@
                   </else>
                 </if>
               </sequence>
-              <sequence name="Sequence3">
+              <sequence name="AlertsOnAir">
                 <if name="IfFlightsGuard_Combustible">
+                  <documentation>
+                    <![CDATA[HayAlertas]]>
+                  </documentation>
                   <condition>$BREventos/ns6:AlertsOnAir = 'true' or $BRCombustibleOut/ns6:estado&gt;0</condition>
-                  <sequence>
+                  <sequence name="AlertsOnAir">
                     <flow name="Flow3">
-                      <sequence name="Sequence">
+                      <sequence name="AlertsOnAir">
                         <if name="IfAlertOnAir">
                           <condition>$BREventos/ns6:AlertsOnAir = 'true'</condition>
                           <sequence>
@@ -533,9 +539,9 @@
                           </sequence>
                         </if>
                       </sequence>
-                      <sequence name="Sequence12">
+                      <sequence name="AlertsCombustible">
                         <if name="IfCombustible">
-                          <condition>$BRCombustibleOut/ns6:estado&gt;0</condition>
+                          <condition>$BRCombustibleOut/ns6:estado&lt;1</condition>
                           <sequence name="Sequence13">
                             <assign name="AsignarCombustible"
                                     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
@@ -570,18 +576,21 @@
                       </sequence>
                     </flow>
                   </sequence>
-                  <else><assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
-      <copy>
-         <from>-1</from>
-         <to>$inputVariable.payload/ns5:departure-airport</to>
-      </copy>
-   </assign></else>
+                  <else><assign name="Fin" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                      <copy>
+                        <from>-1</from>
+                        <to>$inputVariable.payload/ns5:departure-airport</to>
+                      </copy>
+                    </assign></else>
                 </if>
               </sequence>
-              <sequence name="Sequence">
+              <sequence name="OnShoppingAir">
                 <if name="IfBlizard">
+                  <documentation>
+                    <![CDATA[HayCompras]]>
+                  </documentation>
                   <condition>$BREventos/ns6:OnAirShopping = 'true'</condition>
-                  <sequence>
+                  <sequence name="OnShoppingAir">
                     <assign name="AsignacionCompras">
                       <copy>
                         <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping/ns5:credit-card-number</from>
@@ -605,18 +614,21 @@
                             inputVariable="InvokeOnAirShopping_create_InputVariable"
                             outputVariable="InvokeOnAirShopping_create_OutputVariable"/>
                   </sequence>
-                  <else><assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
-      <copy>
-         <from>-1</from>
-         <to>$inputVariable.payload/ns5:departure-airport</to>
-      </copy>
-   </assign></else>
+                  <else><assign name="Fin" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                      <copy>
+                        <from>-1</from>
+                        <to>$inputVariable.payload/ns5:departure-airport</to>
+                      </copy>
+                    </assign></else>
                 </if>
               </sequence>
-              <sequence name="Sequence2">
+              <sequence name="CancelFlight">
                 <if name="IfRecoveryOperation">
+                  <documentation>
+                    <![CDATA[HayCancelacion]]>
+                  </documentation>
                   <condition>$BREventos/ns6:CancelFlight = 'true'</condition>
-                  <sequence>
+                  <sequence name="CancelFlight">
                     <assign name="AsignarCancelacion">
                       <copy>
                         <from>$inputVariable.payload/ns5:tail-number</from>
@@ -640,12 +652,12 @@
                             inputVariable="InvokeRecoveryOperation_cancelFlight_InputVariable"
                             outputVariable="InvokeRecoveryOperation_cancelFlight_OutputVariable"/>
                   </sequence>
-                  <else><assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
-      <copy>
-         <from>-1</from>
-         <to>$inputVariable.payload/ns5:departure-airport</to>
-      </copy>
-   </assign></else>
+                  <else><assign name="Fin" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                      <copy>
+                        <from>-1</from>
+                        <to>$inputVariable.payload/ns5:departure-airport</to>
+                      </copy>
+                    </assign></else>
                 </if>
               </sequence>
             </flow>
@@ -654,8 +666,8 @@
             <documentation>
               <![CDATA[Completed]]>
             </documentation>
-            <sequence name="Sequence7">
-              <assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+            <sequence name="FinFlujo">
+              <assign name="Fin" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
                 <copy>
                   <from>-1</from>
                   <to>$inputVariable.payload/ns5:departure-airport</to>
@@ -670,7 +682,7 @@
         <documentation>
           <![CDATA[TAIL_INVALIDO]]>
         </documentation>
-        <assign name="Assign1">
+        <assign name="FinFlujo">
           <copy>
             <from>-1</from>
             <to>$inputVariable.payload/ns5:departure-airport</to>
