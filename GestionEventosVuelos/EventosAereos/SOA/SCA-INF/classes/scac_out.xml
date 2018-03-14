@@ -1,0 +1,493 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>229</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>233</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>237</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>241</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>245</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>249</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>253</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>257</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>284</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>288</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>292</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>296</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>300</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>304</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>308</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>329</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>333</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>337</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>341</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>345</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>349</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>353</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>357</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>378</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>382</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>386</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>390</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>394</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>398</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>402</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>406</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>429</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>433</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>437</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>441</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>445</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>449</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>453</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>457</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>484</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>488</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>492</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>522</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>558</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>562</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>566</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>570</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>597</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line>601</line>
+      <col/>
+      <file>BPEL/BPELEventosAerolineasLA.bpel</file>
+      <name>BPEL/BPELEventosAerolineasLA.bpel</name>
+      <fix>Add a predicate to select an element from the sequence.</fix>
+      <msg>The XPath segment "child::ns5:flight-leg" selects a sequence of elements - a predicate MAY be needed to correctly select an element.</msg>
+   </Fault>
+</Faults>

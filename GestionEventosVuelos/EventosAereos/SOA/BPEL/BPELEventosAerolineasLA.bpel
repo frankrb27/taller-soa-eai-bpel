@@ -1,0 +1,654 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sat Mar 10 18:11:15 COT 2018
+  Author:  aes
+  Type: BPEL 2.0 Process
+  Purpose: One Way BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="BPELEventosAerolineasLA"
+               targetNamespace="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://cancel-flight.ws.com.co"
+         xmlns:ns2="http://on-air-shopping.ws.com.co" xmlns:ns3="http://alert-on-air.ws.com.co"
+         xmlns:ns4="http://maintenance-planner.ws.com.co"
+         xmlns:ns5="http://aerolineas-latinoamericanas/contract/messages"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns6="http://www.example.org/salida"
+         xmlns:ns7="http://xmlns.oracle.com/BRAlertaCombustible/BRAlertaCombustible_DecisionService_1"
+         xmlns:ns8="http://xmlns.oracle.com/bpel"
+         xmlns:ns9="http://xmlns.oracle.com/BRCombustible/BRCombustible_DecisionService_1">
+  <import namespace="http://www.example.org/salida" location="../Schemas/Eventos_business_rules.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import namespace="http://www.example.org/salida" location="../Schemas/salida.xsd"
+          importType="http://www.w3.org/2001/XMLSchema"/>
+  <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/GestionEventosVuelos/EventosAereos/BPELEventosAerolineasLA" location="../WSDLs/BPELEventosAerolineasLA.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="bpeleventosaerolineasla_client" partnerLinkType="client:BPELEventosAerolineasLA" myRole="BPELEventosAerolineasLAProvider"/>
+    <partnerLink name="OnAirShopping" partnerLinkType="ns2:OnAirShopping" partnerRole="OnAirShoppingEndpoint"/>
+    <partnerLink name="AlertOnAir" partnerLinkType="ns3:AlertOnAir" partnerRole="AlertOnAirEndpoint"/>
+    <partnerLink name="MaintenancePlanner" partnerLinkType="ns4:MaintenancePlanner"
+                 partnerRole="MaintenancePlannerEndpoint"/>
+    <partnerLink name="CancelFlight" partnerLinkType="ns1:CancelFlight" partnerRole="CancelFlightEndpoint"/>
+    <partnerLink name="BRCombustible.BRCombustible_DecisionService_1" partnerRole="IDecisionService_Role"
+                 partnerLinkType="ns9:IDecisionService_PLT"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:BPELEventosAerolineasLARequestMessage"/>
+    <variable name="InvokeOnAirShopping_create_InputVariable" messageType="ns2:onAirShoppingRequest"/>
+    <variable name="InvokeOnAirShopping_create_OutputVariable" messageType="ns2:onAirShoppingResponse"/>
+    <variable name="InvokeCancelFlight_cancelFlight_InputVariable" messageType="ns1:cancelFlightRequest"/>
+    <variable name="InvokeCancelFlight_cancelFlight_OutputVariable" messageType="ns1:cancelFlightResponse"/>
+    <variable name="InvokeAlertOnAir_create_InputVariable_1" messageType="ns3:alertOnAirRequest"/>
+    <variable name="InvokeAlertOnAir_create_OutputVariable_1" messageType="ns3:alertOnAirResponse"/>
+    <variable name="InvokeMaintenance_sendMaintenance_InputVariable_1" messageType="ns4:maintenancePlannerRequest"/>
+    <variable name="InvokeMaintenance_sendMaintenance_OutputVariable" messageType="ns4:maintenancePlannerResponse"/>
+    <variable name="BRCombustibleOut" element="ns6:nodoSalida"/>
+    <variable name="BREventos" element="ns6:nodoEntradaBR"/>
+    <variable name="InvokeRecoveryOperation_cancelFlight_InputVariable" messageType="ns1:cancelFlightRequest"/>
+    <variable name="InvokeRecoveryOperation_cancelFlight_OutputVariable" messageType="ns1:cancelFlightResponse"/>
+    <variable name="InvokeAlertasOnAir_create_InputVariable" messageType="ns3:alertOnAirRequest"/>
+    <variable name="InvokeAlertasOnAir_create_OutputVariable" messageType="ns3:alertOnAirResponse"/>
+    <variable name="InvokeMaintenance_sendMaintenance_InputVariable" messageType="ns4:maintenancePlannerRequest"/>
+    <variable name="InvokeMaintenance_sendMaintenance_OutputVariable_1" messageType="ns4:maintenancePlannerResponse"/>
+    <variable name="InvokeMPEI_sendMaintenance_InputVariable" messageType="ns4:maintenancePlannerRequest"/>
+    <variable name="InvokeMPEI_sendMaintenance_OutputVariable" messageType="ns4:maintenancePlannerResponse"/>
+    <variable name="InvokeMPAI_sendMaintenance_InputVariable" messageType="ns4:maintenancePlannerRequest"/>
+    <variable name="InvokeMPAI_sendMaintenance_OutputVariable" messageType="ns4:maintenancePlannerResponse"/>
+    <variable name="InvokeMPAO_sendMaintenance_InputVariable" messageType="ns4:maintenancePlannerRequest"/>
+    <variable name="InvokeMPAO_sendMaintenance_OutputVariable" messageType="ns4:maintenancePlannerResponse"/>
+    <variable name="InvokeAlertaCombustible_create_InputVariable" messageType="ns3:alertOnAirRequest"/>
+    <variable name="InvokeAlertaCombustible_create_OutputVariable" messageType="ns3:alertOnAirResponse"/>
+    <variable name="InvokeMPNoEvents_sendMaintenance_InputVariable" messageType="ns4:maintenancePlannerRequest"/>
+    <variable name="InvokeMPNoEvents_sendMaintenance_OutputVariable" messageType="ns4:maintenancePlannerResponse"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in BPELEventosAerolineasLA.wsdl) -->
+    <receive name="receiveInput" partnerLink="bpeleventosaerolineasla_client" portType="client:BPELEventosAerolineasLA"
+             operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="AsignarRequest" validate="yes">
+      <copy>
+        <from>$inputVariable.payload/ns5:tail-number</from>
+        <to>$BREventos/ns6:tailNumber</to>
+      </copy>
+      <copy>
+        <from>''</from>
+        <to>$BREventos/ns6:Status</to>
+      </copy>
+      <copy>
+        <from>0</from>
+        <to>$BREventos/ns6:Combustible</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping)&gt;0 and  string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping/ns5:credit-card-number)&gt;0</from>
+        <to>$BREventos/ns6:OnAirShopping</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:alert-on-air) &gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:alert-on-air/ns5:description)&gt;0</from>
+        <to>$BREventos/ns6:AlertsOnAir</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:cancel-flight)&gt;0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:cancel-flight/ns5:description) &gt; 0 </from>
+        <to>$BREventos/ns6:CancelFlight</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate)&gt;0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:gate-code)&gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:date)&gt; 0 and  string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:fuel-percentage)&gt;0</from>
+        <to>$BREventos/ns6:ActualIngate</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-outgate) &gt; 0 and  string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-outgate/ns5:gate-code)&gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:date)&gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:fuel-percentage) &gt; 0</from>
+        <to>$BREventos/ns6:ActualOutgate</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate) &gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate/ns5:gate-code)&gt;0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate/ns5:date) &gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate/ns5:fuel-percentage) &gt; 0</from>
+        <to>$BREventos/ns6:EstimatedIngate</to>
+      </copy>
+      <copy>
+        <from>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate) &gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:gate-code)&gt;0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:date) &gt; 0 and string-length($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:fuel-percentage)&gt; 0</from>
+        <to>$BREventos/ns6:EstimatedOutgate</to>
+      </copy>
+    </assign>
+
+    <if name="IFTail">
+      <documentation>
+        <![CDATA[TailValido]]>
+      </documentation>
+      <condition>xp20:compare($inputVariable.payload/ns5:tail-number, 'NULL') and ($inputVariable.payload/ns5:tail-number = 'MK00012' or $inputVariable.payload/ns5:tail-number = 'MK00013' or $inputVariable.payload/ns5:tail-number = 'MK00014' or $inputVariable.payload/ns5:tail-number = 'MK00015' or $inputVariable.payload/ns5:tail-number = 'MK00016' )</condition>
+      <sequence>
+        <if name="IfStatus">
+          <documentation>
+            <![CDATA[NoCompleted]]>
+          </documentation>
+          <condition>$BREventos/ns6:Status != 'COMPLETED'</condition>
+          <sequence>
+            <if name="IfCombustible">
+              <condition>count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate) &gt;0 or count($inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate) &gt; 0</condition>
+              <scope name="combustible">
+                <bpelx:annotation>
+                  <bpelx:pattern patternName="bpelx:decide"></bpelx:pattern>
+                </bpelx:annotation>
+                <variables>
+                  <variable name="dsIn" messageType="ns9:callFunctionStatelessMessage"/>
+                  <variable name="dsOut" messageType="ns9:callFunctionStatelessDecisionMessage"/>
+                </variables>
+                <sequence name="Sequence5">
+                  <assign name="Facts_To_Rule_Service">
+                    <copy>
+                      <from variable="inputVariable" part="payload"/>
+                      <to variable="dsIn" part="payload"><query>ns9:parameterList/ns5:aircratline-message</query></to>
+                    </copy>
+                  </assign>
+                  <assign name="BPEL_Header">
+                    <copy>
+                      <from>"BRCombustible_DecisionService_1"</from>
+                      <to variable="dsIn" part="payload"><query>@name</query></to>
+                    </copy>
+                  </assign>
+                  <invoke name="Invoke" partnerLink="BRCombustible.BRCombustible_DecisionService_1"
+                          portType="ns9:IDecisionService" operation="callFunctionStateless" inputVariable="dsIn"
+                          outputVariable="dsOut"/>
+                  <assign name="Rule_Service_To_Facts">
+                    <copy>
+                      <from variable="dsOut" part="payload"><query>ns9:resultList/ns6:nodoSalida</query></from>
+                      <to variable="BRCombustibleOut"/>
+                    </copy>
+                  </assign>
+                </sequence>
+              </scope>
+              <else>
+                <assign name="CombustibleOK">
+                  <copy>
+                    <from>0</from>
+                    <to>$BRCombustibleOut/ns6:estado</to>
+                  </copy>
+                </assign>
+              </else>
+            </if>
+            <flow name="Flow1">
+              <sequence name="Sequence4">
+                <if name="IfMaintenancePlanner">
+                  <documentation>
+                    <![CDATA[DOMAINEVENT]]>
+                  </documentation>
+                  <condition>$BREventos/ns6:ActualIngate = 'true' or $BREventos/ns6:ActualOutgate = 'true' or $BREventos/ns6:EstimatedIngate = 'true' or $BREventos/ns6:EstimatedOutgate = 'true'</condition><sequence name="Sequence6">
+                    <flow name="Flow2">
+                      <sequence name="Sequence10">
+                        <if name="IfEstimatedOutgate">
+                          <condition>$BREventos/ns6:EstimatedOutgate = 'true'</condition>
+                          <sequence>
+                            <assign name="MaintenanceEstimatedOutgate"
+                                    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                              <copy>
+                                <from>$inputVariable.payload/ns5:tail-number</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/aircrat-tail-number</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/arrivalAirport</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-ingate</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/arrivalGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/flight-external-key</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:gate-code</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/departureGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:date</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/startDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-outgate-time</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/endDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@status</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/status</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
+                                <to>$InvokeMaintenance_sendMaintenance_InputVariable_1.in/departureAirport</to>
+                              </copy>
+                            </assign>
+                            <invoke name="InvokeMaintenance" partnerLink="MaintenancePlanner"
+                                    portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
+                                    inputVariable="InvokeMaintenance_sendMaintenance_InputVariable"
+                                    outputVariable="InvokeMaintenance_sendMaintenance_OutputVariable_1"
+                                    bpelx:invokeAsDetail="no"/>
+                          </sequence>
+                        </if>
+                      </sequence>
+                      <sequence name="Sequence9">
+                        <if name="IfEstimatedIngate">
+                          <condition>$BREventos/ns6:EstimatedIngate = 'true'</condition>
+                          <sequence>
+                            <assign name="MaintenanceEstimatedIngate"
+                                    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                              <copy>
+                                <from>$inputVariable.payload/ns5:tail-number</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/aircrat-tail-number</to>
+                              </copy>
+                              <copy>
+                                <from>xp20:current-date()</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/startDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/arrivalAirport</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/departureAirport</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/flight-external-key</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@status</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/status</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate/ns5:gate-code</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/arrivalGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-outgate/ns5:gate-code</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/departureGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:estimated-ingate/ns5:date</from>
+                                <to>$InvokeMPEI_sendMaintenance_InputVariable.in/endDate</to>
+                              </copy>
+                            </assign>
+                            <invoke name="InvokeMPEI" bpelx:invokeAsDetail="no" partnerLink="MaintenancePlanner"
+                                    portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
+                                    inputVariable="InvokeMPEI_sendMaintenance_InputVariable"
+                                    outputVariable="InvokeMPEI_sendMaintenance_OutputVariable"/>
+                          </sequence>
+                        </if>
+                      </sequence>
+                      <sequence name="Sequence">
+                        <if name="IfActualIngate">
+                          <condition>$BREventos/ns6:ActualIngate = 'true'</condition>
+                          <sequence>
+                            <assign name="MaintenanceActualIngate">
+                              <copy>
+                                <from>$inputVariable.payload/ns5:tail-number</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/aircrat-tail-number</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/arrivalAirport</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:gate-code</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/arrivalGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/departureAirport</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-outgate/ns5:gate-code</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/departureGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/flight-external-key</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-ingate/ns5:date</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/endDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-outgate/ns5:date</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/startDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@status</from>
+                                <to>$InvokeMPAI_sendMaintenance_InputVariable.in/status</to>
+                              </copy>
+                            </assign>
+                            <invoke name="InvokeMPAI" bpelx:invokeAsDetail="no" partnerLink="MaintenancePlanner"
+                                    portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
+                                    inputVariable="InvokeMPAI_sendMaintenance_InputVariable"
+                                    outputVariable="InvokeMPAI_sendMaintenance_OutputVariable"/>
+                          </sequence>
+                        </if>
+                      </sequence>
+                      <sequence name="Sequence8">
+                        <if name="IfActualOutGate">
+                          <condition>$BREventos/ns6:ActualOutgate = 'true'</condition>
+                          <sequence>
+                            <assign name="MaintenanceActualOutgate">
+                              <copy>
+                                <from>$inputVariable.payload/ns5:tail-number</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/aircrat-tail-number</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/arrivalAirport</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-ingate</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/arrivalGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-outgate/ns5:gate-code</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/departureGate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/flight-external-key</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-outgate-time</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/endDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:actual-outgate/ns5:date</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/startDate</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@status</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/status</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
+                                <to>$InvokeMPAO_sendMaintenance_InputVariable.in/departureAirport</to>
+                              </copy>
+                            </assign>
+                            <invoke name="InvokeMPAO" bpelx:invokeAsDetail="no" partnerLink="MaintenancePlanner"
+                                    portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
+                                    inputVariable="InvokeMPAO_sendMaintenance_InputVariable"
+                                    outputVariable="InvokeMPAO_sendMaintenance_OutputVariable"/>
+                          </sequence>
+                        </if>
+                      </sequence>
+                    </flow></sequence>
+                    <else>
+                    <documentation>
+                      <![CDATA[NO_DOMAINEVENT]]>
+                    </documentation>
+                    <sequence>
+                      <assign name="MaintenanceSinEventos">
+                        <copy>
+                          <from>$inputVariable.payload/ns5:tail-number</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/aircrat-tail-number</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/flight-external-key</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:arrival-airport</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/arrivalAirport</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/ns5:operational-info/ns5:departure-airport</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/departureAirport</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-ingate</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/arrivalGate</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-outgate</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/departureGate</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-outgate-time</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/startDate</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/ns5:scheduled-info/ns5:estimated-ingate-time</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/endDate</to>
+                        </copy>
+                        <copy>
+                          <from>$inputVariable.payload/ns5:flight-leg/@status</from>
+                          <to>$InvokeMPNoEvents_sendMaintenance_InputVariable.in/status</to>
+                        </copy>
+                      </assign>
+                      <invoke name="InvokeMPNoEvents" bpelx:invokeAsDetail="no" partnerLink="MaintenancePlanner"
+                              portType="ns4:MaintenancePlannerEndpoint" operation="sendMaintenance"
+                              inputVariable="InvokeMPNoEvents_sendMaintenance_InputVariable"
+                              outputVariable="InvokeMPNoEvents_sendMaintenance_OutputVariable"/>
+                    </sequence>
+                  </else>
+                </if>
+              </sequence>
+              <sequence name="Sequence3">
+                <if name="IfFlightsGuard_Combustible">
+                  <condition>$BREventos/ns6:AlertsOnAir = 'true' or $BRCombustibleOut/ns6:estado&gt;0</condition>
+                  <sequence>
+                    <flow name="Flow3">
+                      <sequence name="Sequence">
+                        <if name="IfAlertOnAir">
+                          <condition>$BREventos/ns6:AlertsOnAir = 'true'</condition>
+                          <sequence>
+                            <assign name="AsignarAlertOnAir">
+                              <copy>
+                                <from>$inputVariable.payload/ns5:tail-number</from>
+                                <to>$InvokeAlertOnAir_create_InputVariable_1.in/aircrat-tail-number</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                                <to>$InvokeAlertOnAir_create_InputVariable_1.in/flight-external-key</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:alert-on-air/ns5:alert-type</from>
+                                <to>$InvokeAlertOnAir_create_InputVariable_1.in/level</to>
+                              </copy>
+                              <copy>
+                                <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:alert-on-air/ns5:description</from>
+                                <to>$InvokeAlertOnAir_create_InputVariable_1.in/description</to>
+                              </copy>
+                              <copy>
+                                <from>xp20:current-date()</from>
+                                <to>$InvokeAlertOnAir_create_InputVariable_1.in/date</to>
+                              </copy>
+                            </assign>
+                            <invoke name="InvokeAlertasOnAir" bpelx:invokeAsDetail="no" partnerLink="AlertOnAir"
+                                    portType="ns3:AlertOnAirEndpoint" operation="create"
+                                    inputVariable="InvokeAlertasOnAir_create_InputVariable"
+                                    outputVariable="InvokeAlertasOnAir_create_OutputVariable"/>
+                          </sequence>
+                        </if>
+                      </sequence>
+                      <sequence name="Sequence12">
+                        <if name="IfCombustible">
+                          <condition>$BRCombustibleOut/ns6:estado&gt;0</condition>
+                          <sequence name="Sequence13">
+                            <assign name="AsignarCombustible"
+                                    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      
+      
+      
+      
+      
+   <copy>
+         <from>$inputVariable.payload/ns5:tail-number</from>
+         <to>$InvokeAlertaCombustible_create_InputVariable.in/aircrat-tail-number</to>
+      </copy><copy>
+         <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+         <to>$InvokeAlertaCombustible_create_InputVariable.in/flight-external-key</to>
+      </copy><copy>
+         <from>xp20:current-date()</from>
+         <to>$InvokeAlertaCombustible_create_InputVariable.in/date</to>
+      </copy><copy>
+                                <from>'WARNING'</from>
+                                <to>$InvokeAlertaCombustible_create_InputVariable.in/level</to>
+                              </copy><copy>
+                                <from>'Gasolina escasa'</from>
+                                <to>$InvokeAlertaCombustible_create_InputVariable.in/description</to>
+                              </copy></assign>
+                            <invoke name="InvokeAlertaCombustible" partnerLink="AlertOnAir"
+                                    portType="ns3:AlertOnAirEndpoint" operation="create"
+                                    inputVariable="InvokeAlertaCombustible_create_InputVariable"
+                                    outputVariable="InvokeAlertaCombustible_create_OutputVariable"
+                                    bpelx:invokeAsDetail="no"/>
+                          </sequence>
+                        </if>
+                      </sequence>
+                    </flow>
+                  </sequence>
+                  <else><assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <copy>
+         <from>-1</from>
+         <to>$inputVariable.payload/ns5:departure-airport</to>
+      </copy>
+   </assign></else>
+                </if>
+              </sequence>
+              <sequence name="Sequence">
+                <if name="IfBlizard">
+                  <condition>$BREventos/ns6:OnAirShopping = 'true'</condition>
+                  <sequence>
+                    <assign name="AsignacionCompras">
+                      <copy>
+                        <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping/ns5:credit-card-number</from>
+                        <to>$InvokeOnAirShopping_create_InputVariable.in/creditCard</to>
+                      </copy>
+                      <copy>
+                        <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping/ns5:description</from>
+                        <to>$InvokeOnAirShopping_create_InputVariable.in/description</to>
+                      </copy>
+                      <copy>
+                        <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping/ns5:value</from>
+                        <to>$InvokeOnAirShopping_create_InputVariable.in/value</to>
+                      </copy>
+                      <copy>
+                        <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:on-air-shopping/ns5:transaction-date</from>
+                        <to>$InvokeOnAirShopping_create_InputVariable.in/date</to>
+                      </copy>
+                    </assign>
+                    <invoke name="InvokeOnAirShopping" bpelx:invokeAsDetail="no" partnerLink="OnAirShopping"
+                            portType="ns2:OnAirShoppingEndpoint" operation="create"
+                            inputVariable="InvokeOnAirShopping_create_InputVariable"
+                            outputVariable="InvokeOnAirShopping_create_OutputVariable"/>
+                  </sequence>
+                  <else><assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <copy>
+         <from>-1</from>
+         <to>$inputVariable.payload/ns5:departure-airport</to>
+      </copy>
+   </assign></else>
+                </if>
+              </sequence>
+              <sequence name="Sequence2">
+                <if name="IfRecoveryOperation">
+                  <condition>$BREventos/ns6:CancelFlight = 'true'</condition>
+                  <sequence>
+                    <assign name="AsignarCancelacion">
+                      <copy>
+                        <from>$inputVariable.payload/ns5:tail-number</from>
+                        <to>$InvokeCancelFlight_cancelFlight_InputVariable.in/aircrat-tail-number</to>
+                      </copy>
+                      <copy>
+                        <from>$inputVariable.payload/ns5:flight-leg/@external-key</from>
+                        <to>$InvokeCancelFlight_cancelFlight_InputVariable.in/flight-external-key</to>
+                      </copy>
+                      <copy>
+                        <from>$inputVariable.payload/ns5:flight-leg/ns5:domain-events-info/ns5:cancel-flight/ns5:description</from>
+                        <to>$InvokeCancelFlight_cancelFlight_InputVariable.in/description</to>
+                      </copy>
+                      <copy>
+                        <from>xp20:current-date()</from>
+                        <to>$InvokeCancelFlight_cancelFlight_InputVariable.in/date</to>
+                      </copy>
+                    </assign>
+                    <invoke name="InvokeRecoveryOperation" bpelx:invokeAsDetail="no" partnerLink="CancelFlight"
+                            portType="ns1:CancelFlightEndpoint" operation="cancelFlight"
+                            inputVariable="InvokeRecoveryOperation_cancelFlight_InputVariable"
+                            outputVariable="InvokeRecoveryOperation_cancelFlight_OutputVariable"/>
+                  </sequence>
+                  <else><assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+      <copy>
+         <from>-1</from>
+         <to>$inputVariable.payload/ns5:departure-airport</to>
+      </copy>
+   </assign></else>
+                </if>
+              </sequence>
+            </flow>
+          </sequence>
+          <else>
+            <documentation>
+              <![CDATA[Completed]]>
+            </documentation>
+            <sequence name="Sequence7">
+              <assign name="Assign1" xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+                <copy>
+                  <from>-1</from>
+                  <to>$inputVariable.payload/ns5:departure-airport</to>
+                </copy>
+              </assign>
+
+            </sequence>
+          </else>
+        </if>
+      </sequence>
+      <else>
+        <documentation>
+          <![CDATA[TAIL_INVALIDO]]>
+        </documentation>
+        <assign name="Assign1">
+          <copy>
+            <from>-1</from>
+            <to>$inputVariable.payload/ns5:departure-airport</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+
+  </sequence>
+</process>

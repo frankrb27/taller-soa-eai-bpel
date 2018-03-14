@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="BRAlertaCombustible">
+    <ruleEngineProvider provider="Oracle_11.0.0.0.0" name="OracleRulesSDK">
+        <repository type="SCA-Archive">
+            <path>EventosAereos/oracle/rules/eventosaereos/BRAlertaCombustible.rules</path>
+        </repository>
+    </ruleEngineProvider>
+    <decisionService name="BRAlertaCombustible_DecisionService_1" ruleEngineProviderReference="OracleRulesSDK" targetNamespace="http://xmlns.oracle.com/BRAlertaCombustible/BRAlertaCombustible_DecisionService_1">
+        <catalog>BRAlertaCombustible</catalog>
+        <pattern name="CallFunctionStateless">
+            <arguments>
+                <call>eventosaereos.BRAlertaCombustible.DecisionService_1</call>
+            </arguments>
+        </pattern>
+        <pattern name="CallFunctionStateful">
+            <arguments>
+                <call>eventosaereos.BRAlertaCombustible.DecisionService_1</call>
+            </arguments>
+        </pattern>
+    </decisionService>
+    <schemaInformation>
+        <dictionary fqnPackage="eventosaereos" fqnName="BRAlertaCombustible" updateNumber="30">
+            <schemaBrowser>
+                <package>aerolineas_latinoamericanas.contract.messages</package>
+                <namespace>http://aerolineas-latinoamericanas/contract/messages</namespace>
+            </schemaBrowser>
+            <schemaBrowser>
+                <package>org.example.salida</package>
+                <namespace>http://www.example.org/salida</namespace>
+            </schemaBrowser>
+            <schemaImport namespace="http://aerolineas-latinoamericanas/contract/messages" localPart="swift-messages-model.xsd" schemaLocation="Schemas/swift/swift-messages-model.xsd">
+                <import namespace="http://aerolineas-latinoamericanas/contract/messages" localPart="swift-messages-model.xsd" schemaLocation="Schemas/swift/swift-messages-model.xsd"/>
+            </schemaImport>
+            <schemaImport namespace="http://www.example.org/salida" localPart="salida.xsd" schemaLocation="Schemas/salida.xsd">
+                <import namespace="http://www.example.org/salida" localPart="salida.xsd" schemaLocation="Schemas/salida.xsd"/>
+            </schemaImport>
+        </dictionary>
+    </schemaInformation>
+</decisionServices>
